@@ -1,0 +1,2 @@
+# vscode_extension_html_normalizer
+HTMLのタグ閉じ忘れなどを自動的に修正する。node などに依存しているので注意。要非公開
