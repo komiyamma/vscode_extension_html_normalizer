@@ -1,9 +1,9 @@
 {
   "publisher": "komiyamma",
   "name": "htmlnormalizer",
-  "displayName": "HtmlNormalizer",
-  "description": "HTMLをノーマライズする",
-  "version": "0.0.9",
+  "displayName": "Html Normalizer",
+  "description": "This extension mimics the browser's interpretation of the DOM and automatically corrects all inconsistencies such as forgotten tag closures throughout the HTML automatically.\nブラウザのDOM解釈を模倣し、HTML全体のタグの閉じ忘れなどの不整合を自動的に全て自動で修正します。",
+  "version": "0.9.2",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -13,6 +13,16 @@
   "activationEvents": [
     "onCommand:HtmlNormalizer"
   ],
+  "icon": "resources/icons/logo.png",
+  "keywords": [
+    "html",
+    "tag",
+    "tag-close",
+    "close-tag",
+    "auto-close-tag",
+    "html-normalize"
+  ],
+  "license": "MIT",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -21,6 +31,11 @@
         "title": "HtmlNormalizer"
       }
     ]
+  },
+  "homepage": "https://github.com/komiyamma/vscode_extension_html_normalizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/komiyamma/vscode_extension_html_normalizer"
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

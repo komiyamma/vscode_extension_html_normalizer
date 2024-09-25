@@ -1,17 +1,9 @@
-# htmlnormalizer README
+# Html Normalizer
 
-HTMLのタグ忘れなどを修正する
+ブラウザのDOM解釈を模倣し、HTML全体のタグの閉じ忘れなどの不整合を自動的に全て自動で修正します。
 
-## Requirements
+# Change Log
 
-## Extension Settings
+### 0.9.2
 
-## Known Issues
-
-## Release Notes
-
-### 0.0.1
-
------------------------------------------------------------------------------------------------------------
-
-
+初版

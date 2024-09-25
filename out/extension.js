@@ -35,9 +35,6 @@ function activate(context) {
             const srcHtml = document.getText();
             const dom = new jsdom.JSDOM(srcHtml);
             let outHtml = dom.window.document.documentElement.outerHTML;
-            if (srcHtml === outHtml) {
-                return;
-            }
             let hasHtmlHead = false;
             if (srcHtml.includes("<html")) {
                 hasHtmlHead = true;
@@ -54,6 +51,9 @@ function activate(context) {
                 let foot = "</body></html>";
                 outHtml = outHtml.replace(foot, "");
             }
+            if (compareIgnoringNewlines(srcHtml, outHtml)) {
+                return;
+            }
             // 全てのテキストを選択
             const fullRange = new vscode.Range(0, 0, editor.document.lineCount, editor.document.lineAt(editor.document.lineCount - 1).range.end.character);
             editor.edit(editBuilder => {
@@ -64,6 +64,13 @@ function activate(context) {
     context.subscriptions.push(disposable);
 }
 exports.activate = activate;
+function compareIgnoringNewlines(src, out) {
+    // 改行を削除
+    const srcNoNewLines = src.replace(/\s/g, '');
+    const outNoNewLines = out.replace(/\s/g, '');
+    // 比較
+    return srcNoNewLines === outNoNewLines;
+}
 // This method is called when your extension is deactivated
 function deactivate() { }
 exports.deactivate = deactivate;

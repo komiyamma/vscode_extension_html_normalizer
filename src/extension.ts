@@ -15,10 +15,6 @@ export function activate(context: vscode.ExtensionContext) {
 			const dom = new jsdom.JSDOM(srcHtml);
 			let outHtml = dom.window.document.documentElement.outerHTML;
 
-			if (srcHtml === outHtml) {
-				return;
-			}
-
 			let hasHtmlHead = false;
 			if (srcHtml.includes("<html")) {
 				hasHtmlHead = true;
@@ -38,6 +34,10 @@ export function activate(context: vscode.ExtensionContext) {
 				outHtml = outHtml.replace(foot, "");
 			}
 
+			if (compareIgnoringNewlines(srcHtml, outHtml)) {
+				return;
+			}
+
 			// 全てのテキストを選択
 			const fullRange = new vscode.Range(0, 0, editor.document.lineCount, editor.document.lineAt(editor.document.lineCount - 1).range.end.character);
 
@@ -51,7 +51,14 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 
+function compareIgnoringNewlines(src: string, out: string) {
+	// 改行を削除
+	const srcNoNewLines = src.replace(/\s/g, '');
+	const outNoNewLines = out.replace(/\s/g, '');
 
+	// 比較
+	return srcNoNewLines === outNoNewLines;
+  }
 
 
 
