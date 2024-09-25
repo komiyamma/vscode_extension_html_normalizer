@@ -3,12 +3,12 @@
   "name": "htmlnormalizer",
   "displayName": "Html Normalizer",
   "description": "This extension mimics the browser's interpretation of the DOM and automatically corrects all inconsistencies such as forgotten tag closures throughout the HTML automatically.\nブラウザのDOM解釈を模倣し、HTML全体のタグの閉じ忘れなどの不整合を自動的に全て自動で修正します。",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "engines": {
     "vscode": "^1.90.0"
   },
   "categories": [
-    "Other"
+    "Formatters"
   ],
   "activationEvents": [
     "onCommand:HtmlNormalizer"

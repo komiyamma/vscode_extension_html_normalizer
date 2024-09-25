@@ -58,10 +58,7 @@ function compareIgnoringNewlines(src: string, out: string) {
 
 	// 比較
 	return srcNoNewLines === outNoNewLines;
-  }
-
-
-
+}
 
 
 
