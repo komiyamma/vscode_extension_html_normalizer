@@ -8,6 +8,10 @@
 
 # Change Log
 
+### 0.9.5
+
+!DOCUMENT TYPEタグ などHTMLタグより外の要素が消えていた問題の修正
+
 ### 0.9.4
 
 カテゴリを「Formatters」に変更

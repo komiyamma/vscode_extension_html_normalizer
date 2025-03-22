@@ -34,7 +34,7 @@ function activate(context) {
             const document = editor.document;
             const srcHtml = document.getText();
             const dom = new jsdom.JSDOM(srcHtml);
-            let outHtml = dom.window.document.documentElement.outerHTML;
+            let outHtml = dom.serialize();
             let hasHtmlHead = false;
             if (srcHtml.includes("<html")) {
                 hasHtmlHead = true;
