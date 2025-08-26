@@ -8,6 +8,10 @@
 
 # Change Log
 
+### 0.9.6
+
+!DOCUMENT TYPEタグ やHTMLタグのフォーマットが元と異なってしまっていた問題
+
 ### 0.9.5
 
 !DOCUMENT TYPEタグ などHTMLタグより外の要素が消えていた問題の修正
