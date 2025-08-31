@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.9.8
+
+- Readmeのバッジエラーの解消
+
 ### 0.9.7
 
 - The Readme is now available in both English and Japanese.

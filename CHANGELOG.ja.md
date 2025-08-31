@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.9.8
+
+- Fixed version badge error
+
 ### 0.9.7
 
 Readmeを日英両方に対応した。

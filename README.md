@@ -1,8 +1,8 @@
-[日本語版はこちら](README.ja.md)
+[To Japanese Version README](README.ja.md)
 
 # Html Normalizer
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg?color=4094ff)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+[![Version](https://img.shields.io/badge/version-v0.9.8-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 This extension automatically corrects inconsistencies in your HTML, such as unclosed tags.
@@ -28,6 +28,10 @@ It mimics the browser's DOM interpretation for accurate normalization.
 ---
 
 ## Change Log
+
+### 0.9.8
+
+- Fixed version badge error
 
 ### 0.9.7
 
