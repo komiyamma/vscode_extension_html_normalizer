@@ -3,7 +3,6 @@
 # Html Normalizer
 
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg?color=4094ff)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正します。
@@ -29,6 +28,10 @@ HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正�
 ---
 
 ## Change Log
+
+### 0.9.7
+
+Readmeを日英両方に対応した。
 
 ### 0.9.6
 

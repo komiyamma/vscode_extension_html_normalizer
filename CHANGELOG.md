@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.9.7
+
+- The Readme is now available in both English and Japanese.
+
 ### 0.9.6
 
 - Fixed an issue where the format of `!DOCTYPE` and `<html>` tags was altered.
