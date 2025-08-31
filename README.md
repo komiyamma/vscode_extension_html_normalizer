@@ -2,7 +2,7 @@
 
 # Html Normalizer
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg?color=4094ff)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
@@ -12,7 +12,7 @@ It mimics the browser's DOM interpretation for accurate normalization.
 ## Features
 
 - **Auto-corrects tags:** Fixes unclosed tags and improper nesting automatically.
-- **Normalizes HTML structure:** Adds `<html>`, `<head>`, and `<body>` tags if they are missing.
+- **Normalizes HTML structure:** Even if `<html>`, `<head>`, `<body>` tags are missing, it will be properly completed as "partial HTML description" and "keep it partial".
 - **Browser-compatible:** Uses the same logic as web browsers to parse HTML, ensuring high compatibility.
 - **Preserves DOCTYPE:** Keeps the `<!DOCTYPE html>` declaration intact during normalization.
 

@@ -2,7 +2,7 @@
 
 # Html Normalizer
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg?color=4094ff)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
@@ -12,7 +12,7 @@ HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正�
 ## 主な機能 (Features)
 
 - **タグの自動修正:** 閉じられていないタグや、不正なネストを自動で修正します。
-- **HTML構造の正規化:** `<html>`, `<head>`, `<body>` タグがない場合でも、適切に補完します。
+- **HTML構造の正規化:** `<html>`, `<head>`, `<body>` タグがない場合でも、「部分的なHTML記述」として「部分的なまま」適切に補完します。
 - **ブラウザ互換:** WebブラウザがHTMLを解釈するのと同じロジックを使用しているため、高い互換性があります。
 - **DOCTYPE宣言の保持:** `<!DOCTYPE html>` のようなドキュメントタイプ宣言を維持したまま正規化します。
 
