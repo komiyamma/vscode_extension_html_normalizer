@@ -2,20 +2,20 @@
 
 ### 0.9.6
 
-!DOCUMENT TYPEタグ やHTMLタグのフォーマットが元と異なってしまっていた問題
+- Fixed an issue where the format of `!DOCTYPE` and `<html>` tags was altered.
 
 ### 0.9.5
 
-!DOCUMENT TYPEタグ などHTMLタグより外の要素が消えていた問題の修正
+- Fixed an issue where elements outside the `<html>` tag, like `!DOCTYPE`, were being removed.
 
 ### 0.9.4
 
-カテゴリを「Formatters」に変更
+- Changed category to "Formatters".
 
 ### 0.9.3
 
-マーケットプレイスへのリンクミスを修正
+- Fixed a broken link to the marketplace.
 
 ### 0.9.2
 
-初版
+- Initial release.
