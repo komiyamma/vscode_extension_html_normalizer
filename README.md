@@ -1,29 +1,51 @@
+[日本語版はこちら](README.ja.md)
+
 # Html Normalizer
 
- HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正します。  
- ブラウザのDOM解釈を模倣するのでそれなりに正確です。
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/komiyamma.htmlnormalizer.svg)](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+[![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
-## マーケットプレイス
-[htmlnormalizer](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer) で公開されています。
+This extension automatically corrects inconsistencies in your HTML, such as unclosed tags.
+It mimics the browser's DOM interpretation for accurate normalization.
 
-# Change Log
+## Features
+
+- **Auto-corrects tags:** Fixes unclosed tags and improper nesting automatically.
+- **Normalizes HTML structure:** Adds `<html>`, `<head>`, and `<body>` tags if they are missing.
+- **Browser-compatible:** Uses the same logic as web browsers to parse HTML, ensuring high compatibility.
+- **Preserves DOCTYPE:** Keeps the `<!DOCTYPE html>` declaration intact during normalization.
+
+## Usage
+
+1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
+2. Type `HtmlNormalizer` and run the command.
+3. The active HTML file will be normalized.
+
+## Marketplace
+
+[Html Normalizer - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+
+---
+
+## Change Log
 
 ### 0.9.6
 
-!DOCUMENT TYPEタグ やHTMLタグのフォーマットが元と異なってしまっていた問題
+- Fixed an issue where the format of `!DOCTYPE` and `<html>` tags was altered.
 
 ### 0.9.5
 
-!DOCUMENT TYPEタグ などHTMLタグより外の要素が消えていた問題の修正
+- Fixed an issue where elements outside the `<html>` tag, like `!DOCTYPE`, were being removed.
 
 ### 0.9.4
 
-カテゴリを「Formatters」に変更
+- Changed category to "Formatters".
 
 ### 0.9.3
 
-マーケットプレイスへのリンクミスを修正
+- Fixed a broken link to the marketplace.
 
 ### 0.9.2
 
-初版
+- Initial release.
