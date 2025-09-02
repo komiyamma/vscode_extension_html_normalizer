@@ -1,3 +1,4 @@
+
 [To English Version README](README.md)
 
 # Html Normalizer
@@ -5,31 +6,29 @@
 [![Version](https://img.shields.io/badge/version-v0.9.9-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
-HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正します。
-ブラウザのDOM解釈を模倣することで、正確な修正を実現します。
+## Html Normalizerとは？
 
-## 主な機能 (Features)
+Html Normalizerは、VS Code上でHTMLファイルのタグ抜けや構造の乱れをワンクリックで自動修正できる拡張機能です。  
+閉じ忘れタグや部分的なHTMLも、まるでブラウザのように正しく補完・整理します。
 
-- **タグの自動修正:** 閉じられていないタグや、不正なネストを自動で修正します。
-- **完全HTMLと断片の扱い:** 完全HTMLは再構築され、DOCTYPEも保持します。断片はフラグメントとしてパースし、`<html>/<head>/<body>` を付けずに直列化するため、順序や`<script>`・コメントなどがそのまま保たれます。
-- **堅牢な判定:** コメントや`<script>`内文字列の`"<html"`に惑わされず、完全HTMLか断片かを見分けます。
-- **ブラウザ互換:** 標準準拠のHTMLパーサにより高い互換性を担保します。
+## 主な特徴
 
-## 使い方 (Usage)
+- **ワンクリックでHTMLをきれいに:** 閉じタグ抜けやネストの乱れを自動修正。
+- **部分的なHTMLも対応:** スニペットや一部だけのHTMLでも、余計なタグを追加せず部分的なまま整理。
+- **ブラウザ互換:** ブラウザと同じ解析ロジックで、表示結果も安心。
+- **DOCTYPE宣言はそのまま:** `<!DOCTYPE html>` も消えません。
 
-1. コマンドパレットを開きます (`Ctrl+Shift+P` or `Cmd+Shift+P`)
-2. `HtmlNormalizer` と入力して、コマンドを実行します。
-3. アクティブなHTMLファイルが正規化されます。
+## 使い方
 
-## マーケットプレイス (Marketplace)
+1. VS CodeでHTMLファイルを開く
+2. `Ctrl+Shift+P`（Macは`Cmd+Shift+P`）でコマンドパレットを開く
+3. `HtmlNormalizer`と入力してコマンド実行
+4. HTMLが自動できれいに整形されます
 
-[Html Normalizer - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+## こんな方におすすめ
 
-## 挙動メモ (Behavior Notes)
-
-- **断片:** 入力順が維持され、要素は自動的に`<head>`へ移動しません。完全ドキュメントではブラウザが移動する場合があります。
-- **テーブル:** `<tbody>`などの暗黙要素がブラウザにより補完されることがあり、シリアライズに反映されます。
-- **文脈依存要素:** `<tr>` や `<li>` など親要素が必須の要素はベストエフォートで正規化しますが、ラッパーは既定では付与しません。
+- HTML編集でタグ抜けや構造崩れを手作業で直すのが面倒な方
+- Webデザイナー、学生、開発者など、誰でも簡単に使えます
 
 ---
 

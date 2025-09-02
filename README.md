@@ -1,3 +1,4 @@
+
 [To Japanese Version README](README.ja.md)
 
 # Html Normalizer
@@ -5,31 +6,29 @@
 [![Version](https://img.shields.io/badge/version-v0.9.9-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
-This extension automatically corrects inconsistencies in your HTML, such as unclosed tags.
-It mimics the browser's DOM interpretation for accurate normalization.
+## What is Html Normalizer?
 
-## Features
+Html Normalizer is a VS Code extension that helps you clean up and fix your HTML files with just one click.  
+If your HTML has missing closing tags, broken structure, or is just a fragment, this tool will automatically correct it for you—just like a web browser would.
 
-- **Auto-corrects tags:** Fixes unclosed tags and improper nesting automatically.
-- **Full vs Fragment handling:** Full HTML is reconstructed and DOCTYPE preserved. HTML fragments are parsed as fragments and serialized without adding `<html>/<head>/<body>`, preserving order and keeping scripts/comments in place.
-- **Robust detection:** Not fooled by `<html` inside comments or `<script>` strings when deciding full vs fragment.
-- **Browser-compatible:** Uses a standards-compliant HTML parser for high compatibility.
+## Main Features
 
-## Usage
+- **One-click HTML cleanup:** Instantly fixes unclosed tags and messy nesting.
+- **Works with fragments:** Even if your HTML is just a snippet, it keeps the structure partial and doesn’t force extra tags.
+- **Browser-like results:** Uses the same logic as browsers, so your HTML will behave as expected.
+- **Keeps DOCTYPE:** The `<!DOCTYPE html>` declaration stays untouched.
 
-1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
-2. Type `HtmlNormalizer` and run the command.
-3. The active HTML file will be normalized.
+## How to Use
 
-## Marketplace
+1. Open your HTML file in VS Code.
+2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the Command Palette.
+3. Type `HtmlNormalizer` and run the command.
+4. Your HTML will be instantly normalized and cleaned up.
 
-[Html Normalizer - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
+## Who is this for?
 
-## Behavior Notes
-
-- **Fragments:** Input order is preserved and elements are not moved into `<head>` automatically. In a full document, browsers may move such nodes.
-- **Tables:** Browsers may insert implicit elements like `<tbody>`; the serializer reflects these insertions when applicable.
-- **Invalid contexts:** Elements that require parents (e.g., `<tr>`, `<li>`) are normalized as best-effort but remain fragments; no wrappers are added by default.
+- Anyone who edits HTML in VS Code and wants to avoid manual tag fixing.
+- Web designers, students, and developers who want browser-compatible HTML.
 
 ---
 
