@@ -2,7 +2,7 @@
 
 # Html Normalizer
 
-[![Version](https://img.shields.io/badge/version-v0.9.8-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
+[![Version](https://img.shields.io/badge/version-v0.9.9-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正します。
@@ -25,9 +25,23 @@ HTML全体のタグの閉じ忘れなどの不整合を全て自動的に修正�
 
 [Html Normalizer - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 
+## 開発 (Development)
+
+このプロジェクトには、正規化ロジックの堅牢性と信頼性を確保するためのテストスイートが含まれています。
+
+-   **テストの実行:** `npm test`
+
 ---
 
 ## Change Log
+
+### 0.9.9 (未リリース)
+
+- コア正規化ロジックをリファクタリングし、堅牢性と信頼性を向上
+- リグレッションを防ぐための包括的なテストスイートを追加
+- 完全なHTMLと部分的なHTMLの検出ロジックを改善
+- 不正なドキュメントでクラッシュしないようにエラーハンドリングを追加
+- 依存関係を最新の非メジャーバージョンに更新
 
 ### 0.9.8
 

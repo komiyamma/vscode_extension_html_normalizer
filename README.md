@@ -2,7 +2,7 @@
 
 # Html Normalizer
 
-[![Version](https://img.shields.io/badge/version-v0.9.8-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
+[![Version](https://img.shields.io/badge/version-v0.9.9-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 This extension automatically corrects inconsistencies in your HTML, such as unclosed tags.
@@ -25,9 +25,23 @@ It mimics the browser's DOM interpretation for accurate normalization.
 
 [Html Normalizer - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 
+## Development
+
+This project includes a suite of tests to ensure the normalization logic is robust and reliable.
+
+-   **Run tests:** `npm test`
+
 ---
 
 ## Change Log
+
+### 0.9.9 (Unreleased)
+
+- Refactored the core normalization logic to be more robust and reliable.
+- Added a comprehensive test suite to prevent regressions.
+- Improved detection of full vs. partial HTML documents.
+- Added error handling to prevent crashes on invalid documents.
+- Updated dependencies to the latest non-major versions.
 
 ### 0.9.8
 
