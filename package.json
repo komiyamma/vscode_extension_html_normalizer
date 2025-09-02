@@ -3,7 +3,7 @@
   "name": "htmlnormalizer",
   "displayName": "Html Normalizer",
   "description": "This extension mimics the browser's interpretation of the DOM and automatically corrects all inconsistencies such as forgotten tag closures throughout the HTML automatically.\nブラウザのDOM解釈を模倣し、HTML全体のタグの閉じ忘れなどの不整合を自動的に全て自動で修正します。",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -43,7 +43,9 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "unit": "npm run compile && node tests/unit/normalizer.unit.test.js",
+    "test:unit": "npm run unit"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",

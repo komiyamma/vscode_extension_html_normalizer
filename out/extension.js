@@ -31,17 +31,25 @@ function activate(context) {
     let disposable = vscode.commands.registerCommand('HtmlNormalizer', () => {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
-            const document = editor.document;
-            const srcHtml = document.getText();
-            const outHtml = (0, normalizer_1.normalizeHtml)(srcHtml);
-            if ((0, normalizer_1.compareIgnoringNewlines)(srcHtml, outHtml)) {
-                return;
+            try {
+                const document = editor.document;
+                const srcHtml = document.getText();
+                const outHtml = (0, normalizer_1.normalizeHtml)(srcHtml);
+                if ((0, normalizer_1.compareIgnoringNewlines)(srcHtml, outHtml)) {
+                    return;
+                }
+                // 全てのテキストを選択
+                const fullRange = new vscode.Range(0, 0, document.lineCount, document.lineAt(document.lineCount - 1).range.end.character);
+                editor.edit(editBuilder => {
+                    editBuilder.replace(fullRange, outHtml);
+                });
             }
-            // 全てのテキストを選択
-            const fullRange = new vscode.Range(0, 0, editor.document.lineCount, editor.document.lineAt(editor.document.lineCount - 1).range.end.character);
-            editor.edit(editBuilder => {
-                editBuilder.replace(fullRange, outHtml);
-            });
+            catch (error) {
+                const errorMessage = error instanceof Error ? error.message : String(error);
+                outputChannel.appendLine(`[Error] Failed to normalize HTML: ${errorMessage}`);
+                outputChannel.show();
+                vscode.window.showErrorMessage('HtmlNormalizer: Failed to normalize HTML. See output channel for details.');
+            }
         }
     });
     context.subscriptions.push(disposable);

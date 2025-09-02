@@ -1,27 +1,55 @@
 const jsdom = require('jsdom');
 
 export function normalizeHtml(srcHtml: string): string {
-	const dom = new jsdom.JSDOM(srcHtml);
+	// Enable source locations to distinguish explicitly provided nodes from auto-inserted ones
+	const dom = new jsdom.JSDOM(srcHtml, { includeNodeLocations: true });
 	let outHtml;
 
-	// To determine if the input is a full HTML document or a partial snippet,
-	// we check for the presence of an <html> tag.
-	// We remove comments first to avoid false positives from `<html>` tags inside comments.
-	const withoutComments = srcHtml.replace(/<!--[\s\S]*?-->/g, '');
-	const isFullHtml = /<html[\s>]/i.test(withoutComments);
+    // Robustly determine whether the input is a full HTML document:
+    //  - If a DOCTYPE exists in the source, treat as full HTML
+    //  - Else, if the <html> element exists with a source location, it was present in the source
+    //  - Else, fallback to textual detection that ignores comments and <script>/<style> contents
+    // This avoids false positives from comments or strings inside <script>/<style>.
+    const doc = dom.window.document as any;
+    const hasDoctype = doc.doctype !== null;
+    const htmlEl: any = doc.documentElement;
+    const htmlHasLocation = htmlEl && !!htmlEl.sourceCodeLocation; // only set when present in source
+    // Fallback textual detection
+    const textWithoutComments = srcHtml.replace(/<!--[\s\S]*?-->/g, '');
+    const textWithoutScripts = textWithoutComments.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+    const textWithoutStyles = textWithoutScripts.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '');
+    const htmlByText = /<html[\s>]/i.test(textWithoutStyles);
+    const isFullHtml = hasDoctype || htmlHasLocation || htmlByText;
 
 	if (isFullHtml) {
-		// For full HTML documents, we reconstruct the document from the normalized DOM.
-		// This is more robust than regex-based replacement.
-		// We also preserve the original DOCTYPE declaration if it exists.
+		// For full HTML documents, reconstruct the document from the normalized DOM.
+		// Preserve the original DOCTYPE bytes if present by extracting from the original text.
 		const doctypeMatch = srcHtml.match(/<!DOCTYPE[^>]+>/i);
 		const doctype = doctypeMatch ? doctypeMatch[0] + '\n' : '';
-		outHtml = doctype + dom.window.document.documentElement.outerHTML;
+		outHtml = doctype + doc.documentElement.outerHTML;
 	} else {
-		// For partial HTML snippets, we return the normalized content of the <body> tag.
-		// JSDOM wraps snippets in a full <html><body>...</body></html> structure,
-		// so this extracts the relevant normalized part.
-		outHtml = dom.window.document.body.innerHTML;
+		// For partial HTML snippets, parse as a fragment and serialize its children.
+		const fragment = jsdom.JSDOM.fragment(srcHtml);
+		const parts: string[] = [];
+		(Array.from(fragment.childNodes) as any[]).forEach((node: any) => {
+			if (node.nodeType === 1 && typeof node.outerHTML === 'string') {
+				parts.push(node.outerHTML);
+				return;
+			}
+			if (node.nodeType === 8) {
+				const data = typeof node.data === 'string' ? node.data : (node.textContent ?? '');
+				parts.push(`<!--${data}-->`);
+				return;
+			}
+			if (typeof node.textContent === 'string') {
+				parts.push(node.textContent);
+				return;
+			}
+			if (typeof node.outerHTML === 'string') {
+				parts.push(node.outerHTML);
+			}
+		});
+		outHtml = parts.join('');
 	}
 
 	return outHtml;

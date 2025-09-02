@@ -11,9 +11,9 @@ It mimics the browser's DOM interpretation for accurate normalization.
 ## Features
 
 - **Auto-corrects tags:** Fixes unclosed tags and improper nesting automatically.
-- **Normalizes HTML structure:** Even if `<html>`, `<head>`, `<body>` tags are missing, it will be properly completed as "partial HTML description" and "keep it partial".
-- **Browser-compatible:** Uses the same logic as web browsers to parse HTML, ensuring high compatibility.
-- **Preserves DOCTYPE:** Keeps the `<!DOCTYPE html>` declaration intact during normalization.
+- **Full vs Fragment handling:** Full HTML is reconstructed and DOCTYPE preserved. HTML fragments are parsed as fragments and serialized without adding `<html>/<head>/<body>`, preserving order and keeping scripts/comments in place.
+- **Robust detection:** Not fooled by `<html` inside comments or `<script>` strings when deciding full vs fragment.
+- **Browser-compatible:** Uses a standards-compliant HTML parser for high compatibility.
 
 ## Usage
 
@@ -25,27 +25,28 @@ It mimics the browser's DOM interpretation for accurate normalization.
 
 [Html Normalizer - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=komiyamma.htmlnormalizer)
 
-## Development
+## Behavior Notes
 
-This project includes a suite of tests to ensure the normalization logic is robust and reliable.
-
--   **Run tests:** `npm test`
+- **Fragments:** Input order is preserved and elements are not moved into `<head>` automatically. In a full document, browsers may move such nodes.
+- **Tables:** Browsers may insert implicit elements like `<tbody>`; the serializer reflects these insertions when applicable.
+- **Invalid contexts:** Elements that require parents (e.g., `<tr>`, `<li>`) are normalized as best-effort but remain fragments; no wrappers are added by default.
 
 ---
 
 ## Change Log
 
-### 0.9.9 (Unreleased)
+### 0.9.9
 
-- Refactored the core normalization logic to be more robust and reliable.
-- Added a comprehensive test suite to prevent regressions.
-- Improved detection of full vs. partial HTML documents.
-- Added error handling to prevent crashes on invalid documents.
-- Updated dependencies to the latest non-major versions.
+- Default to fragment serialization for partial HTML: preserves input order, keeps scripts/comments, and avoids adding `<html>/<head>/<body>` wrappers.
+- Harden full vs. fragment detection using parser source locations and by ignoring `<html` inside comments/scripts/styles; case-insensitive HTML tag handling.
+- Replace fragile regex-based reinsertion with DOM-based serialization; preserve original DOCTYPE.
+- Add tests (VS Code tests + fast unit tests) covering comments, script strings, tables (`<tbody>` insertion), nested anchors, and more.
+- Add error handling with Output Channel messages.
+- Update docs and packaging ignores (exclude tests, artifacts).
 
 ### 0.9.8
 
-- Fixed version badge error
+- Readmeのバッジエラーの解消
 
 ### 0.9.7
 

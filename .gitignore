@@ -253,3 +253,14 @@ paket-files/
 
 # Visual Studio Code files
 .vscode/
+
+# VS Code extension / Node typical ignores
+out/
+.vscode-test/
+*.vsix
+*.tsbuildinfo
+.eslintcache
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-error.log*

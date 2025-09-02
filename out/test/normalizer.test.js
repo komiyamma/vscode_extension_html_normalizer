@@ -67,10 +67,14 @@ const normalizer_1 = require("../normalizer");
     // --- Tests for Edge Cases ---
     (0, mocha_1.test)('Edge Case: HTML detection fooled by comment', () => {
         const input = '<!-- <html> --><div><p>test</div>';
-        // The detection logic correctly identifies this as partial HTML.
-        // JSDOM's parser, when correcting the unclosed <p>, appears to discard the leading comment.
-        // This test asserts the actual behavior.
-        const expected = '<div><p>test</p></div>';
+        // Fragment serialization preserves the leading comment and fixes the unclosed <p>.
+        const expected = '<!-- <html> --><div><p>test</p></div>';
+        assert.strictEqual((0, normalizer_1.normalizeHtml)(input), expected);
+    });
+    (0, mocha_1.test)('Edge Case: HTML detection should ignore <html in <script> string', () => {
+        const input = '<script>const t = "<html>"; /* not a tag */</script><div><p>x</div>';
+        // Fragment serialization keeps the <script> in place and fixes the unclosed <p>.
+        const expected = '<script>const t = "<html>"; /* not a tag */</script><div><p>x</p></div>';
         assert.strictEqual((0, normalizer_1.normalizeHtml)(input), expected);
     });
     (0, mocha_1.test)('Edge Case: Empty input', () => {
