@@ -50,3 +50,65 @@
 
 Html Normalizerは、日常的なHTML編集において「タグ抜け・構造崩れ」を自動修正できる実用的な拡張機能へと進化しています。  
 今後は、ユーザーごとの細かなニーズに応えるための設定機能や、さらなる安定性向上を目指して開発を続けていきます。
+
+## 課題のコードレベル分析
+
+`ISSUES.md`に記載されている「要改善」項目について、ソースコードレベルでの具体的な問題点を以下に示します。
+
+### 1. 変更比較ロジックの脆弱性
+
+- **該当ファイル:** `src/normalizer.ts`
+- **問題のコード:**
+  ```typescript
+  export function compareIgnoringNewlines(src: string, out: string) {
+      const srcNoNewLines = src.replace(/\s/g, '');
+      const outNoNewLines = out.replace(/\s/g, '');
+      return srcNoNewLines === outNoNewLines;
+  }
+  ```
+- **分析:**
+  現在の実装では、正規表現 `/\s/g` を使用してすべての空白文字（スペース、タブ、改行など）を削除して比較しています。これにより、例えば `<strong>Hello World</strong>` と `<strong>HelloWorld</strong>` のように、テキストノード内の意味を持つスペースまで失われ、両者が「変更なし」と誤判定される問題があります。比較は、タグ間のインデントや余分な改行など、HTMLの構造に影響しない空白のみを無視するように修正する必要があります。
+
+### 2. ユーザー体験を損なう全体置換
+
+- **該当ファイル:** `src/extension.ts`
+- **問題のコード:**
+  ```typescript
+  const fullRange = new vscode.Range(0, 0, document.lineCount, document.lineAt(document.lineCount - 1).range.end.character);
+  editor.edit(editBuilder => {
+      editBuilder.replace(fullRange, outHtml);
+  });
+  ```
+- **分析:**
+  正規化が実行される際、エディタの全コンテンツを選択し、一括で置換しています。この実装は、ユーザーのカーソル位置や選択範囲をすべてリセットしてしまうため、特に大きなファイルを編集中には不便です。理想的には、正規化前後の差分を計算し、`editBuilder` を使って最小限の変更のみを適用することで、ユーザー体験を向上させるべきです。
+
+### 3. HTML断片の不安定な手動シリアライズ
+
+- **該当ファイル:** `src/normalizer.ts`
+- **問題のコード:**
+  ```typescript
+  const fragment = jsdom.JSDOM.fragment(srcHtml);
+  const parts: string[] = [];
+  (Array.from(fragment.childNodes) as any[]).forEach((node: any) => {
+      if (node.nodeType === 1 && typeof node.outerHTML === 'string') {
+          parts.push(node.outerHTML);
+          return;
+      }
+      // ... (コメントノードやテキストノードの処理が続く)
+  });
+  outHtml = parts.join('');
+  ```
+- **分析:**
+  部分HTMLのシリアライズ処理が、`nodeType` を手動で判別して文字列を再構築するという、非常に壊れやすい方法で実装されています。このアプローチでは、CDATAセクションや処理命令、あるいは複雑な文字エンティティなど、予期しないノードタイプやエッジケースに対応できない可能性があります。`jsdom`が提供する、より信頼性の高いシリアライズAPI（例えば、一時的な親要素の `innerHTML` を利用するなど）を検討することが望ましいです。
+
+### 4. `any`型の多用による型安全性の低下
+
+- **該当ファイル:** `src/normalizer.ts`
+- **問題のコード:**
+  ```typescript
+  const doc = dom.window.document as any;
+  const htmlEl: any = doc.documentElement;
+  (Array.from(fragment.childNodes) as any[]).forEach((node: any) => { /* ... */ });
+  ```
+- **分析:**
+  コードベースの随所で `any` 型が使用されており、TypeScriptによる静的型チェックの利点が失われています。例えば、`jsdom` のDOMオブジェクトは型付けされずに扱われているため、プロパティへのアクセスミスなどがコンパイル時に検出されません。`@types/jsdom` のような型定義ファイルを導入し、`Document`、`HTMLElement`、`Node` などの具体的な型を適用することで、コードの信頼性とメンテナンス性を大幅に向上させるべきです。
