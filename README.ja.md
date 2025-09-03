@@ -1,9 +1,9 @@
 
+# Html Normalizer VS Code Extension (日本語)
+
 [To English Version README](README.md)
 
-# Html Normalizer
-
-[![Version](https://img.shields.io/badge/version-v0.9.9-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
+[![Version](https://img.shields.io/badge/version-v0.9.10-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 ## Html Normalizerとは？
@@ -33,6 +33,12 @@ Html Normalizerは、VS Code上でHTMLファイルのタグ抜けや構造の乱
 ---
 
 ## Change Log
+
+### 0.9.10
+
+- フルHTML文書の場合 `<html>` 直後 / `<body>` 直前 / `</body>` 直後 の改行ブロックを保持
+- `<script>` / `<style>` 内部の改行を変更しないため内部圧縮処理を削除
+- script/style 改行保持・`<html>` 直後改行保持・柔軟な改行判定のテストを追加
 
 ### 0.9.9
 

@@ -1,9 +1,9 @@
 
+# HTML Normalizer VS Code Extension
+
 [To Japanese Version README](README.ja.md)
 
-# Html Normalizer
-
-[![Version](https://img.shields.io/badge/version-v0.9.9-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
+[![Version](https://img.shields.io/badge/version-v0.9.10-4066ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 ## What is Html Normalizer?
@@ -33,6 +33,12 @@ If your HTML has missing closing tags, broken structure, or is just a fragment, 
 ---
 
 ## Change Log
+
+### 0.9.10
+
+- Preserve original newline blocks after `<html>`, before `<body>`, and after `</body>` without compressing internal script/style content.
+- Remove aggressive internal newline compression to avoid altering JavaScript / CSS semantics.
+- Add tests for script/style newline preservation, `<html>`-after newline retention, and flexible whitespace assertions.
 
 ### 0.9.9
 

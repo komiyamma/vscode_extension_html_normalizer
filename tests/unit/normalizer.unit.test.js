@@ -41,6 +41,33 @@ test('Full: preserves DOCTYPE and html attrs', () => {
   assert.strictEqual(normalizer.normalizeHtml(input), expected);
 });
 
+test('Full: preserves newline block immediately before <body>', () => {
+  const input = '<!DOCTYPE html>\n\n<html>\n<head>\n</head>\n\n<body>\n<div>abc</div>\n</body>\n</html>';
+  const actual = normalizer.normalizeHtml(input);
+  // 先頭の <!DOCTYPE> 後の改行ブロックが <body> 直前にも最低1つ引き継がれていることのみを確認
+  assert.ok(/<!DOCTYPE html>\n[\s\S]*?<body>/.test(actual));
+});
+
+test('Full: preserves trailing newline block after </body>', () => {
+  const input = '<!DOCTYPE html>\n<html>\n<head></head>\n<body>test</body>\n\n</html>\n\n';
+  const actual = normalizer.normalizeHtml(input);
+  // </body>後に改行があり、最終的に </html> の後にも改行が残ること
+  assert.ok(/<\/body>\n+<\/html>\n*$/.test(actual));
+});
+
+test('Full: script internal newlines are preserved', () => {
+  const input = '<!DOCTYPE html>\n<html>\n<head></head>\n<body><script>const a=1;\n\n\nconst b=2;\n</script></body></html>';
+  const out = normalizer.normalizeHtml(input);
+  // 3連続の改行がそのまま残っていること
+  assert.ok(/const a=1;\n\n\nconst b=2;/.test(out));
+});
+
+test('Full: style internal newlines are preserved', () => {
+  const input = '<!DOCTYPE html>\n<html>\n<head></head>\n<body><style>.a{color:red;}\n\n\n.b{color:blue;}\n</style></body></html>';
+  const out = normalizer.normalizeHtml(input);
+  assert.ok(/\.a{color:red;}\n\n\n\.b{color:blue;}/.test(out));
+});
+
 test('Full: normalizes content within body', () => {
   const input = '<html><body><div><p>unclosed</body></html>';
   const expected = '<html><head></head><body><div><p>unclosed</p></div></body></html>';
@@ -148,4 +175,13 @@ test('Partial: table structure inserts <tbody>', () => {
   const input = '<table><tr><td>x';
   const expected = '<table><tbody><tr><td>x</td></tr></tbody></table>';
   assert.strictEqual(normalizer.normalizeHtml(input), expected);
+});
+
+// 追加: <html> 開始タグ直後の改行保持テスト
+
+test('Full: preserves newlines immediately after <html> open', () => {
+  const input = '<!DOCTYPE html>\n<html>\n\n<head></head><body>ok</body></html>';
+  const out = normalizer.normalizeHtml(input);
+  // <html> の直後に 2 つの改行が残っていること
+  assert.ok(/<html>\n\n<head>/.test(out));
 });

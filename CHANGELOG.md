@@ -1,5 +1,20 @@
 # Change Log
 
+### 0.9.10
+
+- Preserve original newline blocks after `<html>`, before `<body>`, and after `</body>` without compressing internal script/style content.
+- Remove aggressive internal newline compression to avoid altering JavaScript / CSS semantics.
+- Add tests for script/style newline preservation, `<html>`-after newline retention, and flexible whitespace assertions.
+
+### 0.9.9
+
+- Default to fragment serialization for partial HTML: preserves input order, keeps scripts/comments, and avoids adding `<html>/<head>/<body>` wrappers.
+- Harden full vs. fragment detection using parser source locations and by ignoring `<html` inside comments/scripts/styles; case-insensitive HTML tag handling.
+- Replace fragile regex-based reinsertion with DOM-based serialization; preserve original DOCTYPE.
+- Add tests (VS Code tests + fast unit tests) covering comments, script strings, tables (`<tbody>` insertion), nested anchors, and more.
+- Add error handling with Output Channel messages.
+- Update docs and packaging ignores (exclude tests, artifacts).
+
 ### 0.9.8
 
 - Readmeのバッジエラーの解消
@@ -27,3 +42,4 @@
 ### 0.9.2
 
 - Initial release.
+
