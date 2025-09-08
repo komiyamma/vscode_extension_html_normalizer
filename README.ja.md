@@ -51,7 +51,7 @@ Html Normalizerは、VS Code上でHTMLファイルのタグ抜けや構造の乱
 
 ### 0.9.8
 
-- Fixed version badge error
+- Readmeのバッジエラーの解消
 
 ### 0.9.7
 

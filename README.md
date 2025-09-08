@@ -51,7 +51,7 @@ If your HTML has missing closing tags, broken structure, or is just a fragment, 
 
 ### 0.9.8
 
-- Readmeのバッジエラーの解消
+- Fixed version badge error
 
 ### 0.9.7
 
