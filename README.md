@@ -1,7 +1,7 @@
 
 # HTML Normalizer VS Code Extension
 
-[To Japanese Version README](README.ja.md)
+[To Japanese README](README.ja.md)
 
 [![Version](https://img.shields.io/badge/version-v0.9.10-5088ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
