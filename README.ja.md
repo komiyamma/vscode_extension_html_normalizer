@@ -3,7 +3,7 @@
 
 [To English README](README.md)
 
-[![Version](https://img.shields.io/badge/version-v0.9.10-5088ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
+[![Version](https://img.shields.io/badge/version-v0.9.11-5088ff?style=flat)](https://github.com/komiyamma/vscode_extension_html_normalizer)
 [![License](https://img.shields.io/github/license/komiyamma/vscode_extension_html_normalizer.svg)](https://github.com/komiyamma/vscode_extension_html_normalizer/blob/main/LICENSE.txt)
 
 ## Html Normalizerとは？
@@ -33,6 +33,11 @@ Html Normalizerは、VS Code上でHTMLファイルのタグ抜けや構造の乱
 ---
 
 ## Change Log
+
+### 0.9.11
+
+- 英語/日本語のNLSリソースを追加し、拡張機能の表示名・説明・コマンド名をローカライズしました。
+- READMEとREADME.jaの0.9.8節の書きぶりを揃え、両言語で同じ内容になるよう調整しました。
 
 ### 0.9.10
 

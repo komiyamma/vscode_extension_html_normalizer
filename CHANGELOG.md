@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.9.11
+
+- Provide localized display name, description, and command title via NLS resources for English and Japanese.
+- Align the English and Japanese README changelog wording for version 0.9.8.
+
 ### 0.9.10
 
 - Preserve original newline blocks after `<html>`, before `<body>`, and after `</body>` without compressing internal script/style content.

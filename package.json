@@ -3,7 +3,7 @@
   "name": "htmlnormalizer",
   "displayName": "%displayName%",
   "description": "%description%",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -59,6 +59,6 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-  "jsdom": "^25.0.0"
+    "jsdom": "^25.0.0"
   }
 }
